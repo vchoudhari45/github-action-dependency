@@ -1,0 +1,23 @@
+name: Dependency in Jobs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running Setup Step
+        run: |
+          echo "Running Setup Step which is basically sleeping for 5 seconds....."
+          sleep 5s 
+
+  build:
+    needs: setup # this add setup step as pre-requisite for build step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running Build Step
+        run: |
+          echo "Running Build Step....."      
